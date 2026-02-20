@@ -1,0 +1,12 @@
+{
+  "name": "todo-list-demo",
+  "version": "1.0.0",
+  "description": "A simple todo list app built with vanilla HTML/CSS/JS",
+  "scripts": {
+    "dev": "vite",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^6.1.0"
+  }
+}

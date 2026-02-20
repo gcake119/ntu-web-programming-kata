@@ -1,0 +1,214 @@
+/* ─── Reset ─────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ─── Base ─────────────────────────────────────────────*/
+body {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #eeeedd;
+}
+
+/* ─── App layout: fixed header + scrollable list ───── */
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* ─── Header (stays fixed at top) ───────────────────── */
+.app-header {
+  flex-shrink: 0;
+  background-color: #eeeedd;
+  padding: 60px 20px 24px;
+}
+
+.header-inner {
+  max-width: 580px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+h1 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  text-align: center;
+  color: #111;
+  letter-spacing: -0.5px;
+}
+
+/* ─── Input row ─────────────────────────────────────── */
+.input-row {
+  display: flex;
+  gap: 10px;
+}
+
+#todo-input {
+  flex: 1;
+  padding: 12px 16px;
+  font-size: 1rem;
+  font-family: inherit;
+  background: #fff;
+  border: 2px solid #bbb;
+  border-radius: 8px;
+  outline: none;
+  color: #333;
+  transition: border-color 0.15s;
+}
+
+#todo-input::placeholder {
+  color: #aaa;
+}
+
+#todo-input:focus {
+  border-color: #777;
+}
+
+#add-btn {
+  padding: 12px 18px;
+  font-size: 1rem;
+  font-family: inherit;
+  background: transparent;
+  border: 2px solid #555;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #111;
+  transition: background-color 0.15s;
+  white-space: nowrap;
+}
+
+#add-btn:hover {
+  background-color: #e0e0cc;
+}
+
+/* ─── Description textarea ──────────────────────────── */
+#desc-input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background: #fff;
+  border: 2px solid #bbb;
+  border-radius: 8px;
+  outline: none;
+  resize: vertical;
+  color: #333;
+  min-height: 100px;
+  transition: border-color 0.15s;
+}
+
+#desc-input::placeholder {
+  color: #aaa;
+}
+
+#desc-input:focus {
+  border-color: #777;
+}
+
+/* ─── Scrollable todo area ──────────────────────────── */
+.todo-scroll {
+  flex: 1;
+  overflow-y: auto;
+  background-color: #eeeedd;
+  padding: 8px 20px 40px;
+}
+
+.todo-inner {
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+/* ─── Todo list ─────────────────────────────────────── */
+#todo-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ─── Single todo item ──────────────────────────────── */
+.todo-item {
+  background: #fff;
+  border: 1.5px solid #ddd;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.todo-item:hover {
+  border-color: #bbb;
+}
+
+/* top row: checkbox + label + delete */
+.todo-item__row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  user-select: none;
+}
+
+.todo-item__checkbox {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  cursor: pointer;
+  accent-color: #555;
+}
+
+.todo-item__title {
+  flex: 1;
+  font-size: 1rem;
+  color: #222;
+  word-break: break-word;
+}
+
+.todo-item.checked .todo-item__title {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.todo-item__delete {
+  flex-shrink: 0;
+  padding: 5px 14px;
+  font-size: 0.88rem;
+  font-family: inherit;
+  background-color: #ff6666;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.todo-item__delete:hover {
+  background-color: #e84444;
+}
+
+/* ─── Expandable description ────────────────────────── */
+.todo-item__desc-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.28s ease, padding 0.28s ease;
+  padding: 0 18px;
+}
+
+.todo-item.expanded .todo-item__desc-wrapper {
+  max-height: 600px;            /* large enough for any content */
+  padding: 0 18px 14px;
+}
+
+.todo-item__desc-text {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+}
