@@ -1,0 +1,148 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #eeeedd;
+  font-family: 'Courier New', Courier, monospace;
+  min-height: 100vh;
+  padding: 60px 20px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #111;
+}
+
+.input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.title-row {
+  display: flex;
+  gap: 10px;
+}
+
+#todo-input {
+  flex: 1;
+  padding: 12px 16px;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 2px solid #aaa;
+  border-radius: 8px;
+  background-color: #fff;
+  outline: none;
+  color: #333;
+}
+
+#todo-input::placeholder {
+  color: #aaa;
+}
+
+#todo-input:focus {
+  border-color: #666;
+}
+
+#add-btn {
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: transparent;
+  border: 2px solid #444;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #111;
+  transition: background-color 0.15s;
+}
+
+#add-btn:hover {
+  background-color: #ddddc8;
+}
+
+#desc-input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  border: 2px solid #aaa;
+  border-radius: 8px;
+  background-color: #fff;
+  outline: none;
+  resize: vertical;
+  color: #333;
+}
+
+#desc-input::placeholder {
+  color: #aaa;
+}
+
+#desc-input:focus {
+  border-color: #666;
+}
+
+#todo-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #fff;
+  border: 1.5px solid #ddd;
+  border-radius: 12px;
+  padding: 14px 18px;
+}
+
+.todo-item input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: #555;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.todo-item .todo-text {
+  flex: 1;
+  font-size: 1rem;
+  color: #222;
+  word-break: break-word;
+}
+
+.todo-item.done .todo-text {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.todo-item .delete-btn {
+  padding: 6px 14px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  background-color: #ff6b6b;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 0.15s;
+}
+
+.todo-item .delete-btn:hover {
+  background-color: #e85555;
+}
