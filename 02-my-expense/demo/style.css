@@ -1,0 +1,315 @@
+/* =====================
+   CSS Reset & Base
+   ===================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e8f4f8;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* =====================
+   App Layout
+   ===================== */
+.app-wrapper {
+  width: 340px;
+  height: 87vh;
+  display: flex;
+  flex-direction: column;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* =====================
+   Tab Bar
+   ===================== */
+.tab-bar {
+  display: flex;
+  align-items: flex-end;
+  background: #2b7a78;
+  padding: 0 12px;
+  gap: 4px;
+  flex-shrink: 0;
+  padding-top: 8px;
+}
+
+.tab {
+  flex: 1;
+  padding: 10px 0 10px;
+  border: none;
+  border-radius: 10px 10px 0 0;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+  color: rgba(255, 255, 255, 0.65);
+  background: transparent;
+  transform: translateY(2px);
+}
+
+.tab.active {
+  background: #3aafa9;
+  color: #fff;
+  transform: translateY(0);
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.1);
+}
+
+.tab:not(.active):hover {
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255,255,255,0.1);
+}
+
+/* =====================
+   Card Body
+   ===================== */
+.card {
+  flex: 1;
+  background: #3aafa9;
+  overflow: hidden;
+  position: relative;
+}
+
+/* wave background */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 160% 60% at 50% 110%, rgba(255,255,255,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 80% 30% at 20% 80%, rgba(255,255,255,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 25% at 85% 60%, rgba(255,255,255,0.07) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+/* =====================
+   Panels
+   ===================== */
+.panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 22px 20px 20px;
+  gap: 14px;
+  overflow-y: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.panel.hidden {
+  display: none;
+}
+
+/* =====================
+   Form Fields (Expense Panel)
+   ===================== */
+.form-group {
+  width: 100%;
+}
+
+.datetime-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.field {
+  width: 100%;
+  padding: 14px 18px;
+  background: #e8eded;
+  border: none;
+  border-radius: 14px;
+  font-size: 14px;
+  color: #333;
+  outline: none;
+  transition: box-shadow 0.2s, background 0.2s;
+  resize: none;
+  font-family: inherit;
+}
+
+.field::placeholder {
+  color: #aaa;
+}
+
+.field:focus {
+  background: #f0f7f7;
+  box-shadow: 0 0 0 2px #2b7a78;
+}
+
+.field.error {
+  box-shadow: 0 0 0 2px #e57373;
+  background: #fff5f5;
+}
+
+select.field {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 12px;
+  padding-right: 36px;
+  background-color: #e8eded;
+}
+
+select.field:focus {
+  background-color: #f0f7f7;
+}
+
+.textarea-field {
+  min-height: 80px;
+  line-height: 1.5;
+}
+
+.btn-now {
+  flex-shrink: 0;
+  padding: 12px 14px;
+  background: #2b7a78;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.btn-now:hover {
+  background: #216060;
+}
+
+.btn-now:active {
+  transform: scale(0.95);
+}
+
+.btn-record {
+  width: 100%;
+  padding: 15px;
+  background: #2b7a78;
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  margin-top: auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: background 0.2s, transform 0.1s;
+}
+
+.btn-record:hover {
+  background: #216060;
+}
+
+.btn-record:active {
+  transform: scale(0.97);
+}
+
+/* number input: hide arrows */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* =====================
+   Statistics Panel
+   ===================== */
+.chart-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+#pie-chart {
+  width: 200px;
+  height: 200px;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15));
+}
+
+.stats-table-container {
+  flex: 1;
+  overflow-y: auto;
+  margin-top: 8px;
+}
+
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  color: #17252a;
+}
+
+.stats-table thead tr {
+  border-bottom: 2.5px solid #17252a;
+}
+
+.stats-table th {
+  padding: 8px 12px 10px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+  color: #17252a;
+}
+
+.stats-table tbody tr {
+  border-bottom: 1.5px dashed rgba(23, 37, 42, 0.35);
+}
+
+.stats-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.stats-table td {
+  padding: 9px 12px;
+  text-align: center;
+  color: #17252a;
+}
+
+.stats-table tfoot tr {
+  border-top: 2.5px solid #17252a;
+}
+
+.stats-table tfoot td {
+  padding: 10px 12px 4px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+  color: #17252a;
+}
+
+.stats-table .no-data {
+  color: rgba(23, 37, 42, 0.55);
+  font-style: italic;
+  padding: 18px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* =====================
+   Responsive: keep ratio on
+   very tall or very wide screens
+   ===================== */
+@media (max-height: 500px) {
+  .app-wrapper {
+    height: 90vh;
+  }
+}

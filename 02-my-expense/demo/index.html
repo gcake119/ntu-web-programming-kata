@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Expense</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-wrapper">
+
+    <!-- Tab Bar -->
+    <div class="tab-bar">
+      <button class="tab active" id="tab-expense" data-tab="expense">Expense</button>
+      <button class="tab" id="tab-statistics" data-tab="statistics">Statistics</button>
+    </div>
+
+    <!-- Card Body -->
+    <div class="card">
+
+      <!-- ===== Expense Panel ===== -->
+      <div class="panel" id="panel-expense">
+        <div class="form-group datetime-group">
+          <input
+            type="text"
+            id="datetime-input"
+            class="field"
+            placeholder="Date / Time"
+            autocomplete="off"
+          />
+          <button type="button" id="btn-now" class="btn-now">Now</button>
+        </div>
+
+        <div class="form-group">
+          <select id="category-select" class="field select-field">
+            <option value="" disabled selected hidden>Category</option>
+            <option value="Food">Food</option>
+            <option value="Entertain">Entertain</option>
+            <option value="Travel">Travel</option>
+            <option value="Utility">Utility</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <input
+            type="text"
+            id="item-input"
+            class="field"
+            placeholder="Item"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="form-group">
+          <input
+            type="number"
+            id="expense-input"
+            class="field"
+            placeholder="Expense"
+            min="0"
+            step="1"
+          />
+        </div>
+
+        <div class="form-group">
+          <textarea
+            id="description-input"
+            class="field textarea-field"
+            placeholder="Description"
+          ></textarea>
+        </div>
+
+        <button type="button" id="btn-record" class="btn-record">Record</button>
+      </div>
+
+      <!-- ===== Statistics Panel ===== -->
+      <div class="panel hidden" id="panel-statistics">
+        <div class="chart-container">
+          <svg id="pie-chart" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <text id="pie-empty-msg" x="100" y="105" text-anchor="middle" fill="#888" font-size="12">No data yet</text>
+          </svg>
+        </div>
+
+        <div class="stats-table-container">
+          <table class="stats-table">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Expense</th>
+              </tr>
+            </thead>
+            <tbody id="stats-tbody">
+              <tr>
+                <td colspan="2" class="no-data">No expenses recorded yet.</td>
+              </tr>
+            </tbody>
+            <tfoot id="stats-tfoot" class="hidden">
+              <tr>
+                <td><strong>Total</strong></td>
+                <td id="stats-total"><strong>$0</strong></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
