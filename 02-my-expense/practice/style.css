@@ -1,0 +1,331 @@
+/* ── Reset & Base ───────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #b2dfdb;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  overflow: hidden;
+}
+
+/* ── Phone Shell ─────────────────────────────────────────────────── */
+.phone-wrapper {
+  width: 340px;
+  height: min(780px, calc(100vh - 32px));
+  border-radius: 36px;
+  border: 6px solid #37474f;
+  background: #009688;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Wave Background (pseudo-element) */
+.phone-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 200% 60% at 50% 110%, rgba(0,121,107,0.55) 0%, transparent 70%),
+    radial-gradient(ellipse 160% 50% at -10% 80%,  rgba(0,150,136,0.45) 0%, transparent 60%),
+    radial-gradient(ellipse 160% 50% at 110% 90%,  rgba(0,150,136,0.45) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Tab Bar ─────────────────────────────────────────────────────── */
+.tab-bar {
+  display: flex;
+  position: relative;
+  z-index: 10;
+  padding: 12px 20px 0;
+  gap: 4px;
+}
+
+.tab {
+  padding: 8px 22px;
+  border-radius: 10px 10px 0 0;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.75);
+  background: rgba(0,77,64,0.30);
+  transition: background 0.25s, color 0.25s;
+  user-select: none;
+}
+
+.tab.active {
+  background: #f5f5f5;
+  color: #00695c;
+}
+
+.tab:not(.active):hover {
+  background: rgba(0,77,64,0.50);
+  color: #fff;
+}
+
+/* ── Card ───────────────────────────────────────────────────────── */
+.card {
+  background: #f0f4f4;
+  border-radius: 20px 20px 0 0;
+  flex: 1;
+  min-height: 0;
+  padding: 20px 20px 16px;
+  position: relative;
+  z-index: 5;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Panel ──────────────────────────────────────────────────────── */
+.panel { display: flex; flex-direction: column; gap: 10px; flex: 1; min-height: 0; overflow: hidden; }
+.panel.hidden { display: none; }
+
+/* Statistics panel scrolls as a whole */
+#panel-statistics { overflow-y: auto; }
+
+/* ── Form ───────────────────────────────────────────────────────── */
+#expense-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.input-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.input-row .input-field { flex: 1; min-width: 0; }
+
+.input-field {
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 12px;
+  background: #fff;
+  font-size: 0.9rem;
+  color: #546e7a;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  outline: none;
+  transition: box-shadow 0.2s;
+}
+
+.input-field:focus { box-shadow: 0 2px 12px rgba(0,150,136,0.30); }
+.input-field::placeholder { color: #b0bec5; }
+
+.textarea {
+  resize: none;
+  padding-top: 10px;
+  line-height: 1.5;
+}
+
+input[type="datetime-local"] {
+  padding-left: 10px;
+  padding-right: 4px;
+  font-size: 0.82rem;
+}
+
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+/* ── Buttons ────────────────────────────────────────────────────── */
+.btn-now {
+  padding: 12px 14px;
+  background: #00897b;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,137,123,0.45);
+  white-space: nowrap;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.btn-now:hover { background: #00796b; }
+.btn-now:active { transform: scale(0.96); }
+
+.btn-record {
+  padding: 14px;
+  background: linear-gradient(135deg, #00897b 0%, #00695c 100%);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0,105,92,0.45);
+  transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+  margin-top: 4px;
+}
+
+.btn-record:hover { box-shadow: 0 6px 18px rgba(0,105,92,0.5); }
+.btn-record:active { transform: scale(0.97); }
+
+/* ── Record List ────────────────────────────────────────────────── */
+.record-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+  padding-right: 2px;
+}
+
+.record-item {
+  background: #fff;
+  border-radius: 12px;
+  padding: 10px 14px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.record-meta { flex: 1; min-width: 0; }
+.record-category { font-size: 0.7rem; color: #00897b; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+.record-item-name { font-size: 0.9rem; color: #37474f; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.record-date { font-size: 0.7rem; color: #90a4ae; margin-top: 2px; }
+.record-desc { font-size: 0.75rem; color: #78909c; margin-top: 2px; }
+
+.record-right { text-align: right; flex-shrink: 0; }
+.record-amount { font-size: 1rem; font-weight: 700; color: #00695c; }
+
+.btn-delete {
+  background: none;
+  border: none;
+  color: #ef9a9a;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0 0 0 6px;
+  line-height: 1;
+  transition: color 0.2s;
+}
+.btn-delete:hover { color: #e53935; }
+
+/* ── Statistics Panel ───────────────────────────────────────────── */
+.chart-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 0 10px;
+}
+
+#pie-chart {
+  border-radius: 50%;
+  max-width: 200px;
+  max-height: 200px;
+  width: 100%;
+  height: auto;
+}
+
+/* ── Stats Table ─────────────────────────────────────────────────── */
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.stats-table thead tr {
+  background: #fff;
+  border-bottom: 2px solid #b2dfdb;
+}
+
+.stats-table th {
+  padding: 12px 16px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #37474f;
+  text-align: left;
+}
+
+.stats-table th:last-child,
+.stats-table td:last-child {
+  text-align: right;
+}
+
+.stats-table tbody tr {
+  border-bottom: 1px dashed #e0f2f1;
+}
+
+.stats-table tbody tr:last-child { border-bottom: none; }
+
+.stats-table td {
+  padding: 10px 16px;
+  font-size: 0.88rem;
+  color: #546e7a;
+}
+
+.stats-table tfoot tr {
+  border-top: 2px solid #b2dfdb;
+  background: #e0f2f1;
+}
+
+.stats-table tfoot td {
+  padding: 12px 16px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #004d40;
+}
+
+/* ── Legend Dot ──────────────────────────────────────────────────── */
+.legend-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+/* ── No Data ─────────────────────────────────────────────────────── */
+.no-data {
+  text-align: center;
+  color: #90a4ae;
+  font-size: 0.9rem;
+  padding: 24px 0;
+}
+
+.no-data.hidden { display: none; }
+
+/* ── Select / Combo ────────────────────────────────────────────── */
+.select-field {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23546e7a' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  cursor: pointer;
+}
+
+.new-cat-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.new-cat-row.hidden { display: none; }
+.new-cat-row .input-field { flex: 1; }
+
+/* ── Scrollbar ───────────────────────────────────────────────────── */
+.record-list::-webkit-scrollbar,
+#panel-statistics::-webkit-scrollbar { width: 4px; }
+.record-list::-webkit-scrollbar-thumb,
+#panel-statistics::-webkit-scrollbar-thumb { background: #b2dfdb; border-radius: 4px; }

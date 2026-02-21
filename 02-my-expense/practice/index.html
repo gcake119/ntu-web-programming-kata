@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Expense</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="phone-wrapper">
+    <!-- Tab Bar -->
+    <div class="tab-bar">
+      <div class="tab active" id="tab-expense" data-tab="expense">Expense</div>
+      <div class="tab" id="tab-statistics" data-tab="statistics">Statistics</div>
+    </div>
+
+    <!-- Main Card -->
+    <div class="card">
+
+      <!-- ===== Expense Panel ===== -->
+      <div class="panel" id="panel-expense">
+        <form id="expense-form">
+          <div class="input-row">
+            <input type="datetime-local" id="datetime" class="input-field" />
+            <button type="button" id="btn-now" class="btn-now">Now</button>
+          </div>
+          <select id="category-select" class="input-field select-field"></select>
+          <div class="input-row new-cat-row hidden" id="new-cat-row">
+            <input type="text" id="new-cat-input" class="input-field" placeholder="輸入新分類名稱" />
+            <button type="button" id="btn-add-cat" class="btn-now">確認</button>
+          </div>
+          <input type="text" id="item" class="input-field" placeholder="Item" />
+          <input type="number" id="amount" class="input-field" placeholder="Expense" min="0" step="0.01" />
+          <textarea id="description" class="input-field textarea" placeholder="Description" rows="2"></textarea>
+          <button type="submit" class="btn-record">Record</button>
+        </form>
+
+        <!-- Expense List -->
+        <div class="record-list" id="record-list"></div>
+      </div>
+
+      <!-- ===== Statistics Panel ===== -->
+      <div class="panel hidden" id="panel-statistics">
+        <div class="chart-wrapper">
+          <canvas id="pie-chart" width="220" height="220"></canvas>
+        </div>
+        <table class="stats-table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Expense</th>
+            </tr>
+          </thead>
+          <tbody id="stats-body"></tbody>
+          <tfoot id="stats-foot"></tfoot>
+        </table>
+        <p id="no-data" class="no-data hidden">No records yet.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
