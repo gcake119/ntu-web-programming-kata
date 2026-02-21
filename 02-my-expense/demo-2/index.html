@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Expense</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- Tab Bar -->
+    <div class="tab-bar">
+      <button class="tab active" id="tab-expense">Expense</button>
+      <button class="tab" id="tab-statistics">Statistics</button>
+    </div>
+
+    <!-- Expense Panel -->
+    <div class="panel" id="panel-expense">
+      <div class="form-container">
+        <div class="field-row">
+          <input
+            type="text"
+            id="datetime"
+            class="field"
+            placeholder="Date / Time  e.g. 2025-09-06 : 3pm"
+          />
+          <button id="btn-now">Now</button>
+        </div>
+
+        <select id="category" class="field">
+          <option value="">Category</option>
+          <option value="Food">Food</option>
+          <option value="Entertain">Entertain</option>
+          <option value="Travel">Travel</option>
+          <option value="Utility">Utility</option>
+        </select>
+
+        <input
+          type="text"
+          id="item"
+          class="field"
+          placeholder="Item"
+        />
+
+        <input
+          type="number"
+          id="expense-amount"
+          class="field"
+          placeholder="Expense"
+          min="0"
+        />
+
+        <textarea
+          id="description"
+          class="field"
+          placeholder="Description (optional)"
+        ></textarea>
+      </div>
+
+      <button id="btn-record">Record</button>
+    </div>
+
+    <!-- Statistics Panel -->
+    <div class="panel hidden" id="panel-statistics">
+      <div class="stats-container">
+        <div class="chart-wrapper">
+          <canvas id="pie-chart"></canvas>
+          <div id="chart-empty" class="chart-empty hidden">No data yet</div>
+        </div>
+        <div class="legend" id="legend"></div>
+        <div class="stats-table-wrapper">
+          <table id="stats-table">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Total</th>
+                <th>%</th>
+              </tr>
+            </thead>
+            <tbody id="stats-tbody">
+              <tr id="no-data-row">
+                <td colspan="3" style="text-align:center; color:#aaa;">No records yet</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
