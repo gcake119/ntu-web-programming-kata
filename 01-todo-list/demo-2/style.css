@@ -1,0 +1,346 @@
+/* ─── Reset & Base ──────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #f0f4f8;
+  --surface: #ffffff;
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --danger: #ef4444;
+  --danger-hover: #dc2626;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --checked-bg: #f8fafc;
+  --checked-text: #94a3b8;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.10);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --transition: 0.2s ease;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100dvh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 16px;
+}
+
+/* ─── App shell ─────────────────────────────────────────────── */
+.app {
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+/* ─── Header ────────────────────────────────────────────────── */
+.app-header {
+  padding: 28px 28px 0;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.app-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+}
+
+/* ─── Input area ─────────────────────────────────────────────── */
+.input-area {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.input-row {
+  display: flex;
+  gap: 8px;
+}
+
+.todo-input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  color: var(--text);
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+.todo-input:focus {
+  border-color: var(--primary);
+}
+
+.desc-input {
+  width: 100%;
+  padding: 8px 14px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  font-family: inherit;
+  color: var(--text);
+  resize: vertical;
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+.desc-input:focus {
+  border-color: var(--primary);
+}
+
+/* ─── Buttons ───────────────────────────────────────────────── */
+.btn {
+  cursor: pointer;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 10px 18px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background var(--transition), transform 0.1s;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn--primary {
+  background: var(--primary);
+  color: #fff;
+  white-space: nowrap;
+}
+
+.btn--primary:hover {
+  background: var(--primary-hover);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text-muted);
+  font-weight: 500;
+  padding: 6px 10px;
+  font-size: 0.82rem;
+}
+
+.btn--ghost:hover {
+  color: var(--danger);
+}
+
+.btn--danger {
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.btn--danger:hover {
+  background: #fee2e2;
+  color: var(--danger);
+}
+
+/* ─── Stats bar ──────────────────────────────────────────────── */
+.stats-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.stats-count {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+}
+
+/* ─── Filter tabs ───────────────────────────────────────────── */
+.filter-tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: none;
+}
+
+.filter-tab {
+  flex: 1;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 10px 0;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  border-bottom: 3px solid transparent;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.filter-tab:hover {
+  color: var(--primary);
+}
+
+.filter-tab.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+  font-weight: 700;
+}
+
+/* ─── Scrollable list area ──────────────────────────────────── */
+.todo-scroll {
+  overflow-y: auto;
+  max-height: 60dvh;
+  padding: 16px 20px;
+}
+
+/* ─── Todo list ──────────────────────────────────────────────── */
+.todo-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ─── Todo item ──────────────────────────────────────────────── */
+.todo-item {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  transition: box-shadow var(--transition), border-color var(--transition);
+  cursor: pointer;
+}
+
+.todo-item:hover {
+  box-shadow: var(--shadow-sm);
+  border-color: #c7d2fe;
+}
+
+.todo-item.checked {
+  background: var(--checked-bg);
+  border-color: var(--border);
+}
+
+/* Top row */
+.todo-item__row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.todo-item__checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.todo-item__title {
+  flex: 1;
+  font-size: 0.95rem;
+  font-weight: 500;
+  word-break: break-word;
+  transition: color var(--transition), text-decoration var(--transition);
+}
+
+.todo-item.checked .todo-item__title {
+  color: var(--checked-text);
+  text-decoration: line-through;
+}
+
+.todo-item__badge {
+  font-size: 0.72rem;
+  background: #e0e7ff;
+  color: var(--primary);
+  border-radius: 999px;
+  padding: 2px 8px;
+  flex-shrink: 0;
+  font-weight: 600;
+}
+
+/* Description wrapper */
+.todo-item__desc-wrapper {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.25s ease, margin-top 0.2s ease;
+}
+
+.todo-item.expanded .todo-item__desc-wrapper {
+  max-height: 200px;
+  margin-top: 10px;
+}
+
+.todo-item__desc-text {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  padding: 8px 12px;
+  background: #f8fafc;
+  border-radius: 6px;
+  border-left: 3px solid #c7d2fe;
+}
+
+/* Timestamp */
+.todo-item__meta {
+  font-size: 0.75rem;
+  color: #b0bec5;
+  margin-top: 6px;
+  display: block;
+}
+
+/* ─── Empty message ──────────────────────────────────────────── */
+.empty-msg {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  padding: 40px 0;
+}
+
+/* ─── Scrollbar styling ──────────────────────────────────────── */
+.todo-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.todo-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.todo-scroll::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+}
+
+/* ─── Fade-in animation for new items ───────────────────────── */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.todo-item--new {
+  animation: fadeSlideIn 0.25s ease forwards;
+}
